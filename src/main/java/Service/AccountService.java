@@ -15,7 +15,7 @@ public class AccountService {
         List<Account> accounts = accountDAO.getAllAccounts();
         if(!account.getUsername().isEmpty() && account.getPassword().length() >=4){
             for(Account ac : accounts){
-                if(ac.getUsername() == account.getUsername()){
+                if(ac.getUsername().equals(account.getUsername())){
                     return null;
                 }
             }
