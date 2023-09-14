@@ -24,13 +24,12 @@ public class AccountService {
         return null;
     }
     public Account login(Account account) {
-        // List<Account> accounts = accountDAO.getAllAccounts();
-        // for(Account ac : accounts){
-        //     if(ac.getUsername() == account.getUsername() && ac.getPassword() == account.getPassword()){
-        //         return accountDAO.login(account);
-        //     }
-        // }
-        // return null;
-        return accountDAO.login(account);
+        List<Account> accounts = accountDAO.getAllAccounts();
+        for(Account ac : accounts){
+            if(ac.getUsername().equals(account.getUsername()) && ac.getPassword().equals(account.getPassword())){
+                return accountDAO.login(ac);
+            }
+        }
+        return null;
     }
 }

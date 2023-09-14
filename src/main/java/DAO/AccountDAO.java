@@ -51,9 +51,11 @@ public class AccountDAO {
     public Account login(Account account) {
         Connection connection = ConnectionUtil.getConnection();
         try{
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from Account where username = "+ account.getUsername());
-            while(rs.next()){
+            String sql = "select * from Account where account_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, account.getAccount_id());
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
                 int account_id = rs.getInt("account_id");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
