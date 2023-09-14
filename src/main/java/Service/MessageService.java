@@ -39,4 +39,16 @@ public class MessageService {
     public Message deleteMessage(int id) {
         return messageDAO.deleteMessage(id);
     }
+
+    public Message updateMessage(int id, Message message) {
+        List<Message> messages = messageDAO.getAllMessages();
+        if(!message.getMessage_text().isEmpty() && message.getMessage_text().length() < 255){
+            for(Message mg : messages){
+                if(mg.getMessage_id() == id){
+                    return messageDAO.updateMessage(id, message);
+                }
+            }
+        }
+        return null;
+    }
 }
